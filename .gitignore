@@ -1,0 +1,13 @@
+# compiled stuff
+bin/
+out/
+*.class
+
+# local mysql login, everyone has their own
+db.properties
+
+# os / ide junk
+.DS_Store
+.settings/
+.idea/
+*.iml
