@@ -20,6 +20,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JOptionPane;
+import java.sql.SQLException;
+import java.util.List;
 
 public class EmployeeSearchFrame extends JFrame {
 
@@ -31,6 +34,9 @@ public class EmployeeSearchFrame extends JFrame {
 	private JList<String> lstProject;
 	private DefaultListModel<String> project = new DefaultListModel<String>();
 	private JTextArea textAreaEmployee;
+	private JCheckBox chckbxNotDept;
+	private JCheckBox chckbxNotProject;
+	private DatabaseConnection db = new DatabaseConnection();
 	/**
 	 * Launch the application.
 	 */
@@ -77,15 +83,7 @@ public class EmployeeSearchFrame extends JFrame {
 		 */
 		btnDBFill.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String[] dept = {"Headquarters", "Reorganization"};	
-				for(int i = 0; i < dept.length; i++) {
-					department.addElement(dept[i]);
-				}
-				String[] prj = {"ProdoctX", "ProductY", "ProductZ"};
-				for(int j = 0; j < prj.length; j++) {
-					project.addElement(prj[j]);
-				}
-				
+				fillLists();
 			}
 		});
 		
@@ -109,11 +107,11 @@ public class EmployeeSearchFrame extends JFrame {
 		lstProject.setBounds(225, 84, 150, 42);
 		contentPane.add(lstProject);
 		
-		JCheckBox chckbxNotDept = new JCheckBox("Not");
+		chckbxNotDept = new JCheckBox("Not");
 		chckbxNotDept.setBounds(71, 133, 59, 23);
 		contentPane.add(chckbxNotDept);
 		
-		JCheckBox chckbxNotProject = new JCheckBox("Not");
+		chckbxNotProject = new JCheckBox("Not");
 		chckbxNotProject.setBounds(270, 133, 59, 23);
 		contentPane.add(chckbxNotProject);
 		
@@ -149,5 +147,36 @@ public class EmployeeSearchFrame extends JFrame {
 		textAreaEmployee = new JTextArea();
 		textAreaEmployee.setBounds(36, 197, 339, 68);
 		contentPane.add(textAreaEmployee);
+	}
+
+	/**
+	 * Resets the department and project lists and loads them again from the
+	 * database typed in the text box. If the database can't be opened we show
+	 * a pop-up and leave both lists empty.
+	 */
+	private void fillLists() {
+		String name = txtDatabase.getText().trim();
+
+		department.clear();
+		project.clear();
+
+		try {
+			db.open(name);
+			List<String> depts = db.getDepartments();
+			List<String> prjs = db.getProjects();
+			for (String d : depts) {
+				department.addElement(d);
+			}
+			for (String p : prjs) {
+				project.addElement(p);
+			}
+		} catch (SQLException ex) {
+			db.close();
+			department.clear();
+			project.clear();
+			JOptionPane.showMessageDialog(this,
+					"The database \"" + name + "\" could not be opened.\n\n" + ex.getMessage(),
+					"Database Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
