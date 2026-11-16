@@ -1,0 +1,6 @@
+# Copy this file to db.properties and put your own MySQL login in it.
+# db.properties is in .gitignore so your password never gets pushed.
+host=localhost
+port=3306
+user=root
+password=
