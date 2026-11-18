@@ -129,7 +129,7 @@ public class EmployeeSearchFrame extends JFrame {
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textAreaEmployee.setText("John Smith\nFranklin Wong");
+				searchEmployees();
 			}
 		});
 		btnSearch.setBounds(80, 276, 89, 23);
@@ -179,4 +179,28 @@ public class EmployeeSearchFrame extends JFrame {
 					"Database Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
+/**
+ * Gets the selected departments/projects and the Not checkboxes,
+ * runs the query and shows the employee names in the text area.
+ */
+private void searchEmployees() {
+    List<String> depts = lstDepartment.getSelectedValuesList();
+    List<String> prjs = lstProject.getSelectedValuesList();
+
+    try {
+        List<String> names = EmployeeQuery.search(db.getConnection(),
+                depts, chckbxNotDept.isSelected(),
+                prjs, chckbxNotProject.isSelected());
+
+        textAreaEmployee.setText(String.join("\n", names));
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this,
+                "Search failed.\n\n" + ex.getMessage(),
+                "Database Error",
+                JOptionPane.ERROR_MESSAGE);
+    }
+}
+
 }
