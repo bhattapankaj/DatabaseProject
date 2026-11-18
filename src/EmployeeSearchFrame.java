@@ -184,23 +184,44 @@ public class EmployeeSearchFrame extends JFrame {
  * Gets the selected departments/projects and the Not checkboxes,
  * runs the query and shows the employee names in the text area.
  */
+
 private void searchEmployees() {
+    if (!db.isOpen()) {
+        JOptionPane.showMessageDialog(this,
+                "Load a database with the Fill button first.",
+                "No Database", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
     List<String> depts = lstDepartment.getSelectedValuesList();
     List<String> prjs = lstProject.getSelectedValuesList();
+
+    if (depts.isEmpty() && prjs.isEmpty()) {
+        JOptionPane.showMessageDialog(this,
+                "Select at least one department or project.",
+                "Nothing Selected", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
 
     try {
         List<String> names = EmployeeQuery.search(db.getConnection(),
                 depts, chckbxNotDept.isSelected(),
                 prjs, chckbxNotProject.isSelected());
 
-        textAreaEmployee.setText(String.join("\n", names));
+        if (names.isEmpty()) {
+            textAreaEmployee.setText("No employees found.");
+        } else {
+            textAreaEmployee.setText(String.join("\n", names));
+        }
+
+        textAreaEmployee.setCaretPosition(0);
 
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(this,
                 "Search failed.\n\n" + ex.getMessage(),
-                "Database Error",
-                JOptionPane.ERROR_MESSAGE);
+                "Database Error", JOptionPane.ERROR_MESSAGE);
     }
 }
+
 
 }
