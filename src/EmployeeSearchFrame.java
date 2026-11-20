@@ -104,8 +104,9 @@ public class EmployeeSearchFrame extends JFrame {
 		lstProject = new JList<String>(new DefaultListModel<String>());
 		lstProject.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lstProject.setModel(project);
-		lstProject.setBounds(225, 84, 150, 42);
-		contentPane.add(lstProject);
+		JScrollPane scrollProject = new JScrollPane(lstProject);
+		scrollProject.setBounds(225, 84, 150, 42);
+		contentPane.add(scrollProject);
 		
 		chckbxNotDept = new JCheckBox("Not");
 		chckbxNotDept.setBounds(71, 133, 59, 23);
@@ -116,10 +117,11 @@ public class EmployeeSearchFrame extends JFrame {
 		contentPane.add(chckbxNotProject);
 		
 		lstDepartment = new JList<String>(new DefaultListModel<String>());
-		lstDepartment.setBounds(36, 84, 172, 40);
-		contentPane.add(lstDepartment);
 		lstDepartment.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lstDepartment.setModel(department);
+		JScrollPane scrollDepartment = new JScrollPane(lstDepartment);
+		scrollDepartment.setBounds(36, 84, 172, 40);
+		contentPane.add(scrollDepartment);
 		
 		JLabel lblEmployee = new JLabel("Employee");
 		lblEmployee.setFont(new Font("Times New Roman", Font.BOLD, 12));
@@ -145,8 +147,10 @@ public class EmployeeSearchFrame extends JFrame {
 		contentPane.add(btnClear);
 		
 		textAreaEmployee = new JTextArea();
-		textAreaEmployee.setBounds(36, 197, 339, 68);
-		contentPane.add(textAreaEmployee);
+		textAreaEmployee.setEditable(false);
+		JScrollPane scrollEmployee = new JScrollPane(textAreaEmployee);
+		scrollEmployee.setBounds(36, 197, 339, 68);
+		contentPane.add(scrollEmployee);
 	}
 
 	/**
