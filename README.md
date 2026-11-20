@@ -35,3 +35,18 @@ On Windows use `;` instead of `:` in the `-cp` part.
 - `src/DatabaseConnection.java` opens the database, loads department and project names
 - `lib/` MySQL Connector/J 9.1.0
 - `sql/company.sql` COMPANY database from the textbook, for testing
+
+## Tools used
+- Visual Studio Code (Extension Pack for Java) and WindowBuilder (Eclipse plugin used for Dr. Smith's original Swing template layout; sizes and scroll panes updated in code)
+- Java JDK 21 (OpenJDK Temurin 21.0.13.1) with Swing (`javax.swing`) for the GUI
+- MySQL Community Server 8.4 and MySQL Workbench for the database
+- MySQL Connector/J 9.1.0 (JDBC driver, in `lib/`)
+- Git and GitHub for version control
+
+## Screenshot
+![Employee Search](docs/screenshot.png)
+
+## Who did what
+- Pankaj Bhatta: repo and Eclipse setup, DatabaseConnection class, Fill button and error pop-up
+- Anupam Adhikari: scrollable lists, multiple selection, layout, Clear button, tools documentation
+- Christiana: search query with the Not options, Search button, testing
