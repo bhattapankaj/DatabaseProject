@@ -144,6 +144,10 @@ public class EmployeeSearchFrame extends JFrame {
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textAreaEmployee.setText("");
+				lstDepartment.clearSelection();
+				lstProject.clearSelection();
+				chckbxNotDept.setSelected(false);
+				chckbxNotProject.setSelected(false);
 			}
 		});
 		btnClear.setBounds(236, 345, 89, 23);
