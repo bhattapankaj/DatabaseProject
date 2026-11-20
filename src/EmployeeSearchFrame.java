@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.ListSelectionModel;
 import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -59,7 +60,7 @@ public class EmployeeSearchFrame extends JFrame {
 	public EmployeeSearchFrame() {
 		setTitle("Employee Search");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 347);
+		setBounds(100, 100, 450, 430);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
@@ -104,28 +105,30 @@ public class EmployeeSearchFrame extends JFrame {
 		lstProject = new JList<String>(new DefaultListModel<String>());
 		lstProject.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lstProject.setModel(project);
+		lstProject.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		JScrollPane scrollProject = new JScrollPane(lstProject);
-		scrollProject.setBounds(225, 84, 150, 42);
+		scrollProject.setBounds(225, 84, 150, 80);
 		contentPane.add(scrollProject);
 		
 		chckbxNotDept = new JCheckBox("Not");
-		chckbxNotDept.setBounds(71, 133, 59, 23);
+		chckbxNotDept.setBounds(71, 170, 59, 23);
 		contentPane.add(chckbxNotDept);
 		
 		chckbxNotProject = new JCheckBox("Not");
-		chckbxNotProject.setBounds(270, 133, 59, 23);
+		chckbxNotProject.setBounds(270, 170, 59, 23);
 		contentPane.add(chckbxNotProject);
 		
 		lstDepartment = new JList<String>(new DefaultListModel<String>());
 		lstDepartment.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lstDepartment.setModel(department);
+		lstDepartment.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		JScrollPane scrollDepartment = new JScrollPane(lstDepartment);
-		scrollDepartment.setBounds(36, 84, 172, 40);
+		scrollDepartment.setBounds(36, 84, 172, 80);
 		contentPane.add(scrollDepartment);
 		
 		JLabel lblEmployee = new JLabel("Employee");
 		lblEmployee.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblEmployee.setBounds(52, 179, 89, 14);
+		lblEmployee.setBounds(52, 205, 89, 14);
 		contentPane.add(lblEmployee);
 		
 		JButton btnSearch = new JButton("Search");
@@ -134,7 +137,7 @@ public class EmployeeSearchFrame extends JFrame {
 				searchEmployees();
 			}
 		});
-		btnSearch.setBounds(80, 276, 89, 23);
+		btnSearch.setBounds(80, 345, 89, 23);
 		contentPane.add(btnSearch);
 		
 		JButton btnClear = new JButton("Clear");
@@ -143,13 +146,13 @@ public class EmployeeSearchFrame extends JFrame {
 				textAreaEmployee.setText("");
 			}
 		});
-		btnClear.setBounds(236, 276, 89, 23);
+		btnClear.setBounds(236, 345, 89, 23);
 		contentPane.add(btnClear);
 		
 		textAreaEmployee = new JTextArea();
 		textAreaEmployee.setEditable(false);
 		JScrollPane scrollEmployee = new JScrollPane(textAreaEmployee);
-		scrollEmployee.setBounds(36, 197, 339, 68);
+		scrollEmployee.setBounds(36, 223, 339, 110);
 		contentPane.add(scrollEmployee);
 	}
 
