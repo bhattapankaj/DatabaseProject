@@ -6,7 +6,7 @@ from a database using the COMPANY schema, then searches for employees that are i
 
 Starts from Dr. Smith's template: https://github.com/proflon/CSCI4055-2025
 
-Group: Pankaj Bhatta, Anupam Adhikari, Christiana
+Group: Pankaj Bhatta, Anupam Adhikari, Christiana Taire
 
 ## Setup
 
@@ -33,8 +33,10 @@ On Windows use `;` instead of `:` in the `-cp` part.
 
 - `src/EmployeeSearchFrame.java` the window (template from Dr. Smith)
 - `src/DatabaseConnection.java` opens the database, loads department and project names
+- `src/EmployeeQuery.java` builds and runs the search query (with the Not options)
 - `lib/` MySQL Connector/J 9.1.0
 - `sql/company.sql` COMPANY database from the textbook, for testing
+- `docs/TESTING.md` search tests and results
 
 ## Tools used
 - Visual Studio Code (Extension Pack for Java) and WindowBuilder (Eclipse plugin used for Dr. Smith's original Swing template layout; sizes and scroll panes updated in code)
@@ -49,4 +51,4 @@ On Windows use `;` instead of `:` in the `-cp` part.
 ## Who did what
 - Pankaj Bhatta: repo and Eclipse setup, DatabaseConnection class, Fill button and error pop-up
 - Anupam Adhikari: scrollable lists, multiple selection, layout, Clear button, tools documentation
-- Christiana: search query with the Not options, Search button, testing
+- Christiana Taire: search query with the Not options, Search button, testing
